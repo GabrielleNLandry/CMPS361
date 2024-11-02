@@ -14,7 +14,7 @@ try {
     $instance = new PDO($dsn,$user,$password);
 
     // Set an error alert
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO ::ERRMODE_EXCEPTION);
+    $instance->setAttribute(PDO::ATTR_ERRMODE, PDO ::ERRMODE_EXCEPTION);
 
     //Echo messages
     echo "Successfully Connects to the Database";
