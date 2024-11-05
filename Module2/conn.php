@@ -2,7 +2,7 @@
 // authentication credentials
 $host = "localhost";
 $port = "5432";
-$dbname = "Bookstore Database";
+$dbname = 'Bookstore_Database';
 $username = "postgres";
 $password = "Gabela2002!";
 
