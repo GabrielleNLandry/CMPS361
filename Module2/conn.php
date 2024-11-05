@@ -2,7 +2,7 @@
 // authentication credentials
 $host = "localhost";
 $port = "5432";
-$dbname = 'Bookstore_Database'; // Ensure this matches your actual database name
+$dbname = 'Bookstore_Database';
 $username = "postgres";
 $password = "Gabela2002!";
 
@@ -16,23 +16,22 @@ try {
     // Set an error alert
     $instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Prepare response data
-    $response = [
-        'status' => 'success',
-        'message' => 'Successfully connected to the database',
-    ];
-    
+    // Query to fetch data
+    $query = "SELECT * FROM bookstoreinventory"; // Replace with your actual table name
+    $stmt = $instance->query($query);
+
+    // Fetch all results as an associative array
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Return JSON response
+    header('Content-Type: application/json');
+    echo json_encode($data);
 
 } catch (PDOException $e) {
-    // Prepare error response
-    $response = [
-        'status' => 'error',
-        'message' => "Connection failed: " . $e->getMessage(),
-    ];
+    echo json_encode([
+        "status" => "error",
+        "message" => $e->getMessage()
+    ]);
 }
-
-// Set the content type to application/json
-header('Content-Type: application/json');
-// Return the JSON response
-echo json_encode($response);
 ?>
+
