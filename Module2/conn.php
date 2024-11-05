@@ -6,20 +6,20 @@ $dbname = "Bookstore Database";
 $username = "postgres";
 $password = "Gabela2002!";
 
-//Connection String
-$dsn = "pgsql:host=$host;dbname=$dbname";
+// Connection String
+$dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
 
 try {
-    //Session
-    $instance = new PDO($dsn,$user,$password);
+    // Session
+    $instance = new PDO($dsn, $username, $password);
 
     // Set an error alert
-    $instance->setAttribute(PDO::ATTR_ERRMODE, PDO ::ERRMODE_EXCEPTION);
+    $instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    //Echo messages
-    echo "Successfully Connects to the Database";
+    // Echo message
+    echo "Successfully connected to the database";
 
 } catch (PDOException $e) {
-    echo "Connection Failed: " . $e->getMessage();
+    echo "Connection failed: " . $e->getMessage();
 }
 ?>
