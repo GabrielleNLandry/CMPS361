@@ -1,5 +1,5 @@
 <?php 
-$url = "http://localhost:8000/Module2/conn.php";
+$url = "http://localhost:8080/Module2/conn.php";
 
 $urlWITHPARAMS = $url;
 // initialize the session
