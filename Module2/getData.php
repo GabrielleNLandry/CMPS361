@@ -3,32 +3,6 @@
 $apiURL = "http://localhost:8080/Module2/conn.php"; 
 
 
-
-// Initialize cURL session
-$ch = curl_init();
-
-// Set options
-curl_setopt($ch, CURLOPT_URL, $apiURL);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  // Return the result instead of outputting
-curl_setopt($ch, CURLOPT_TIMEOUT, 60);           // Timeout in seconds, adjustable if needed
-
-// Execute the request
-$response = curl_exec($ch);
-
-// Check for errors
-if (curl_errno($ch)) {
-    // Handle the error, log it, or display an error message
-    echo "cURL Error: " . curl_error($ch);
-} else {
-    // Process the response as needed
-    echo $response;
-}
-
-// Close the cURL session
-curl_close($ch);
-
-
-
 // Fetch the data
 $response = file_get_contents($apiURL);
 // Decode JSON
