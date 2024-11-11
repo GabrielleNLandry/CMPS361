@@ -92,7 +92,7 @@ if ($data && is_array($data)) {
         }
     }
 
-    // Dsip;lay the "Next" Link
+    // Dsiplay the "Next" Link
     if ($currentPage < $totalPages) {
         echo '<a href="?page=' . ($curretnPage + 1) .'&sort=' . $sortOrder . '">' . $i . '</a>' ;
     }
