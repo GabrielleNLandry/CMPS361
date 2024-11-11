@@ -7,11 +7,14 @@ $username = "postgres";
 $password = "Gabela2002!";
 
 // Connection String
-$dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
+
 
 try {
     // Session
     $instance = new PDO($dsn, $username, $password);
+
+   // $dsn = newPDO()"pgsql:host=$host;port=$port;dbname=$dbname";
+    $dsn = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $username, $password);
 
     // Set an error alert
     $instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
