@@ -4,6 +4,7 @@
     <title>Products</title>
   <!--Stlesheet--> 
   <link rel ="stylesheet"  href="./styles.css">
+  <script src="./searchTable.js"></script>
 </head>
   <body>
     <h1> Products</h1> 
@@ -63,8 +64,15 @@ if ($products && is_array($products)) {
         return $currentOrder == 'asc' ? 'desc' : 'asc';
     }
 
+    //search box
+    echo "<div class='search-container'>";
+    echo "<label for='searchInput'>Search: </label>";
+    echo "<input type='text' id='searchInput' onkeyup='searchTable()' placeholder='Search for something...'>";
+    echo "</div>";
+
     //Display data in a Gridview (HTML Table)
-    echo "<table border='1' cellpadding='10'>";
+    //echo "<table border='1' cellpadding='10'>";
+    echo "<table id='dataGrid'>";
     echo "<thead>";
     echo "<tr>";
     echo "<th><a href='?page=$currentpage&sort=bookname&order=" .toggleOrder($sortOrder) . "'>bookname</a></th>";
@@ -113,7 +121,7 @@ if ($products && is_array($products)) {
 
 //Display total number of records at the bottom
 echo "<div style='margin-top: 20px:'>";
-echo "<strong> Total Records: $totalRecords</strong>";
+echo "<strong> <p>Total Records: $totalRecords</strong>";
 echo "</div>";
 
 } else {
