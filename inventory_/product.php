@@ -5,7 +5,6 @@
   <body>
     <h1> Products</h1> 
   </body>
-
 </html>
 
 
@@ -44,12 +43,13 @@ if ($products && is_array($products)) {
 
     //Sort the data based on colun and order
     usort($products, function($a, $b) use ($sortColumn, $sortOrder) {
-        if ($sortOrder == 'asc') {
-            return strcmp($a[$sortColumn], $b[$sortColumn]);
-        } else {
-            return strcmp($b[$sortColumn], $a[$sortColumn]);
-        }
-    });
+      if ($sortOrder == 'asc') {
+          return strcmp($a[$sortColumn], $b[$sortColumn]);
+      } else {
+          return strcmp($b[$sortColumn], $a[$sortColumn]);
+      }
+  });
+
 
     //Calculate the starting index of the current page
     $startIndex = ($currentpage - 1) * $limit;
@@ -64,15 +64,13 @@ if ($products && is_array($products)) {
     }
 
     //Display data in a Gridview (HTML Table)
-
-    // Build out the table
     echo "<table border='1' cellpadding='10'>";
     echo "<thead>";
     echo "<tr>";
-    echo "<th><a href'?page=$currentpage&sort=bookname&order=" .toggleOrder($sortOrder) . "'>bookname</a></th>";
-    echo "<th><a href'?page=$currentpage&sort=authorname&order=" .toggleOrder($sortOrder) . "'>authorname</a></th>";
-    echo "<th><a href'?page=$currentpage&sort=isbn&order=" .toggleOrder($sortOrder) . "'>isbn</a></th>";
-    echo "<th><a href'?page=$currentpage&sort=booktype&order=" .toggleOrder($sortOrder) . "'>booktype</a></th>";
+    echo "<th><a href='?page=$currentpage&sort=bookname&order=" .toggleOrder($sortOrder) . "'>bookname</a></th>";
+    echo "<th><a href='?page=$currentpage&sort=authorname&order=" .toggleOrder($sortOrder) . "'>authorname</a></th>";
+    echo "<th><a href='?page=$currentpage&sort=isbn&order=" .toggleOrder($sortOrder) . "'>isbn</a></th>";
+    echo "<th><a href='?page=$currentpage&sort=booktype&order=" .toggleOrder($sortOrder) . "'>booktype</a></th>";
     echo "</tr>";
     echo "</thead>";
     echo "<tbody>";
@@ -102,20 +100,20 @@ if ($products && is_array($products)) {
         if ($i == $currentpage) {
             echo "<strong>$i</strong> ";
         } else {
-            echo '<a href="?page='. $i . '&sort=' .$sortColumn . '">' . $i . '</a> ';
+            echo '<a href="?page='. $i . '&sort=' .$sortColumn . '&order=' . $sortOrder . '">' . $i . '</a> ';
         }
     }
 
-    // Dsiplay the "Next" Link
+    // Display the "Next" Link if not on the last page
     if ($currentpage < $totalpages) {
-        echo '<a href="?page=' . ($currentpage + 1) .'&sort=' . $sortOrder . '">' . $i . '</a>' ;
+        echo '<a href="?page=' . ($currentpage + 1) . '&sort' . $sortColumn . '&order' . $sortOrder . '">Next </a?';
     }
 
     echo "</div";
 
 //Display total number of records at the bottom
 echo "<div style='margin-top: 20px:'>";
-echo "<strong>Total Records: $totalRecords</strong>";
+echo "<strong> Total Records: $totalRecords</strong>";
 echo "</div>";
 
 } else {
