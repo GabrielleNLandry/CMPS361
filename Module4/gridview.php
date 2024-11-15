@@ -3,7 +3,7 @@
   <head>
     <title>Products</title>
   <!--Stlesheet--> 
-  <link rel ="stylesheet"  href="./styles.css">
+  <link rel ="stylesheet"  href=".styles.css">
 </head>
   <body>
     <h1> Products</h1> 
@@ -125,4 +125,3 @@ echo "</div>";
 
   </body>
 </html>
-
