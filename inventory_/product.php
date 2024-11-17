@@ -24,9 +24,11 @@ ini_set('display_errors',1);
 // Validate if the data exists
 if ($products && is_array($products)) {
     //pagination
-    $limit = 10;
-    $totalRecords =count($products);
+    // Capture user-defined limit or set a default
+    $limit = isset($_GET['limit']) && is_numeric($_GET['limit']) ? (int)$_GET['limit'] : 10;
+    $totalRecords = count($products);
     $totalpages = ceil($totalRecords / $limit);
+
 
     //Capture the current page or set a default page
     $currentpage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -64,6 +66,23 @@ if ($products && is_array($products)) {
         return $currentOrder == 'asc' ? 'desc' : 'asc';
     }
 
+    // Pagination limit selector
+    echo "<form method='get' style='margin-bottom: 20px;'>";
+    echo "<label for='limit'>Items per page: </label>";
+    echo "<select name='limit' id='limit' onchange='this.form.submit()'>";
+    $options = [5, 10, 15, 20, 25]; // Define pagination options
+    foreach ($options as $option) {
+        $selected = $limit == $option ? 'selected' : '';
+        echo "<option value='$option' $selected>$option</option>";
+    }
+    echo "</select>";
+    // Preserve the current page, sort column, and order 
+    echo "<input type='hidden' name='page' value='$currentpage'>";
+    echo "<input type='hidden' name='sort' value='$sortColumn'>";
+    echo "<input type='hidden' name='order' value='$sortOrder'>";
+    echo "</form>";
+
+
     //search box
     echo "<div class='search-container'>";
     echo "<label for='searchInput'>Search: </label>";
@@ -75,10 +94,10 @@ if ($products && is_array($products)) {
     echo "<table id='dataGrid'>";
     echo "<thead>";
     echo "<tr>";
-    echo "<th><a href='?page=$currentpage&sort=bookname&order=" .toggleOrder($sortOrder) . "'>bookname</a></th>";
-    echo "<th><a href='?page=$currentpage&sort=authorname&order=" .toggleOrder($sortOrder) . "'>authorname</a></th>";
-    echo "<th><a href='?page=$currentpage&sort=isbn&order=" .toggleOrder($sortOrder) . "'>isbn</a></th>";
-    echo "<th><a href='?page=$currentpage&sort=booktype&order=" .toggleOrder($sortOrder) . "'>booktype</a></th>";
+    echo "<th><a href='?page=$currentpage&sort=bookname&order=" .toggleOrder($sortOrder) . "'>Bookname</a></th>";
+    echo "<th><a href='?page=$currentpage&sort=authorname&order=" .toggleOrder($sortOrder) . "'>Authorname</a></th>";
+    echo "<th><a href='?page=$currentpage&sort=isbn&order=" .toggleOrder($sortOrder) . "'>ISBN Number</a></th>";
+    echo "<th><a href='?page=$currentpage&sort=booktype&order=" .toggleOrder($sortOrder) . "'>Book Type</a></th>";
     echo "</tr>";
     echo "</thead>";
     echo "<tbody>";
