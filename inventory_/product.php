@@ -119,7 +119,7 @@ if ($products && is_array($products)) {
 
     //Display "Previous" link if not on the first page
     if ($currentpage > 1) {
-        echo 'a href="?page=' . ($currentpage - 1) . '&sort=' . $sortColumn . '&order' . $sortOrder . '">Previous</a> ';
+        echo '<a href="?page=' . ($currentpage - 1) . '&sort=' . $sortColumn . '&order' . $sortOrder . '">Previous</a> ';
     }
 
     //Display page numbers
