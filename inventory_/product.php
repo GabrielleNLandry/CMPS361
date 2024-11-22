@@ -70,7 +70,7 @@ if ($products && is_array($products)) {
     echo "<form method='get' style='margin-bottom: 20px;'>";
     echo "<label for='limit'>Items per page: </label>";
     echo "<select name='limit' id='limit' onchange='this.form.submit()'>";
-    $options = [5, 10, 15, 20, 25]; // Define pagination options
+    $options = [5, 10, 15, 20, 25, 30]; // Define pagination options
     foreach ($options as $option) {
         $selected = $limit == $option ? 'selected' : '';
         echo "<option value='$option' $selected>$option</option>";
